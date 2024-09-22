@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Flask Pet App</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h1>Add a pet record</h1>
+        <form method="POST" action="{{ url_for('index') }}">
+            {{ form.hidden_tag() }}
+            
+            <div class="form-group">
+                {{ form.name.label }}<br>
+                {{ form.name(class="form-control") }}
+            </div>
+            
+            <div class="form-group">
+                {{ form.age.label }}<br>
+                {{ form.age(class="form-control") }}
+            </div>
+            
+            <div class="form-group">
+                {{ form.type.label }}<br>
+                {{ form.type(class="form-control") }}
+            </div>
+            
+            <div class="form-group">
+                {{ form.submit(class="btn") }}
+            </div>
+        </form>
+
+        <h2>Pets List</h2>
+        <ul class="pet-list">
+            {% for pet in pets %}
+                <li>{{ pet.id }}. {{ pet.name }} ({{ pet.age }} years old, {{ pet.type }})</li>
+            {% endfor %}
+        </ul>
+    </div>
+</body>
+</html>
